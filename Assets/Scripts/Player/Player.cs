@@ -1,48 +1,52 @@
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace FarmGame
 {
-    private Rigidbody2D _rigidbody2D;
-
-    [SerializeField] private float _speeed;
-    private float _inputX;
-    private float _inputY;
-
-    private Vector2 _movementInput;
-    private void Awake()
+    public class Player : MonoBehaviour
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
+        private Rigidbody2D _rigidbody2D;
 
-    private void Update()
-    {
-        PlayerInput();
-    }
+        [SerializeField] private float _speeed;
+        private float _inputX;
+        private float _inputY;
 
-    private void FixedUpdate()
-    {
-        Movement();
-    }
+        private Vector2 _movementInput;
 
-
-    private void PlayerInput()
-    {
-        _inputX = Input.GetAxisRaw("Horizontal");
-        _inputY = Input.GetAxisRaw("Vertical");
-
-
-        if (_inputX != 0 && _inputY != 0)
+        private void Awake()
         {
-            _inputX *= 0.71f;
-            _inputY *= 0.71f;
+            _rigidbody2D = GetComponent<Rigidbody2D>();
         }
-        
-        _movementInput = new Vector2(_inputX, _inputY);
-    }
-    
-    private void Movement()
-    {
-        _rigidbody2D.MovePosition(_rigidbody2D.position + _movementInput * _speeed * Time.deltaTime);
+
+        private void Update()
+        {
+            PlayerInput();
+        }
+
+        private void FixedUpdate()
+        {
+            Movement();
+        }
+
+
+        private void PlayerInput()
+        {
+            _inputX = Input.GetAxisRaw("Horizontal");
+            _inputY = Input.GetAxisRaw("Vertical");
+
+
+            if (_inputX != 0 && _inputY != 0)
+            {
+                _inputX *= 0.71f;
+                _inputY *= 0.71f;
+            }
+
+            _movementInput = new Vector2(_inputX, _inputY);
+        }
+
+        private void Movement()
+        {
+            _rigidbody2D.MovePosition(_rigidbody2D.position + _movementInput * _speeed * Time.deltaTime);
+        }
     }
 }
