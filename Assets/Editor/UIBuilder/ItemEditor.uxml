@@ -1,0 +1,36 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="Container" style="height: 100%; width: 100%; flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="ItemList" style="width: 30%; height: 100%;">
+            <ui:VisualElement name="Header" style="flex-direction: row; justify-content: space-between;">
+                <ui:Label text="ItemList" display-tooltip-when-elided="true" style="font-size: 20px;" />
+                <ui:Button text="+" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:ListView focusable="true" name="ListView" reorderable="true" show-border="true" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:ScrollView name="ItemDetails" style="height: 100%; width: 70%; flex-direction: column; justify-content: flex-start; align-items: stretch;">
+            <ui:VisualElement name="Header" style="flex-direction: row; justify-content: space-between;">
+                <ui:Label text="Detail Information" display-tooltip-when-elided="true" name="ItemDetails" style="font-size: 20px;" />
+                <ui:Button text="Delete" display-tooltip-when-elided="true" style="color: rgb(255, 30, 30);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Contents" style="flex-grow: 1; flex-direction: column; height: 170px;">
+                <ui:VisualElement name="Row1" style="flex-grow: 1; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; padding-bottom: 0;">
+                    <ui:Label text="General" display-tooltip-when-elided="true" style="border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); height: 26px; margin-left: 0; padding-left: 10px; padding-top: 3px; padding-bottom: 3px; background-color: rgb(70, 68, 68);" />
+                    <ui:VisualElement name="ConTainer" style="flex-direction: row; align-items: center; height: 162px; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                        <ui:VisualElement name="Icon" style="width: 80px; height: 80px; background-image: url(&apos;project://database/Assets/M%20Studio/Art/Items/Icons/icon_Basket.png?fileID=2800000&amp;guid=21f88cda6c810402583055801e6a2c73&amp;type=3#icon_Basket&apos;); margin-left: 5px; margin-right: 5px;" />
+                        <ui:VisualElement name="General" style="width: auto; flex-grow: 1; height: auto; margin-right: 0; margin-top: 0; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-left: 0; margin-bottom: 0;">
+                            <uie:IntegerField label="Int Field" value="1001" name="ItemID" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" />
+                            <ui:TextField picking-mode="Ignore" label="Name" value="filler text" name="ItemName" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" />
+                            <uie:EnumField label="Type" value="Center" name="ItemType" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" />
+                            <uie:ObjectField label="Sprite" name="ItemIcon" type="UnityEngine.Sprite, UnityEngine.CoreModule" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; height: 27px;" />
+                            <uie:ObjectField label="OnWorld Sprite" type="UnityEngine.Sprite, UnityEngine.CoreModule" name="ItemSprite" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="Row2">
+                    <ui:Label text="Description&#10;" display-tooltip-when-elided="true" name="Header" style="margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px;" />
+                </ui:VisualElement>
+                <ui:TextField picking-mode="Ignore" value="filler text" text="filler text" name="Description" multiline="true" style="flex-grow: 1; height: 80px;" />
+            </ui:VisualElement>
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>
