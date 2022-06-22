@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Girl02_WalkUp
-  serializedVersion: 7
+  serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -20,13 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -451859637, guid: 68b944a7ceb84479c90acf64797c5a84, type: 3}
+      value: {fileID: 8411552567520241075, guid: 48c266ae0734348198694bc6282c5264, type: 3}
     - time: 0.2
-      value: {fileID: 850425824, guid: 68b944a7ceb84479c90acf64797c5a84, type: 3}
+      value: {fileID: 429938810137952971, guid: 48c266ae0734348198694bc6282c5264, type: 3}
     - time: 0.4
-      value: {fileID: -406238080, guid: 68b944a7ceb84479c90acf64797c5a84, type: 3}
+      value: {fileID: 4213578002167244605, guid: 48c266ae0734348198694bc6282c5264, type: 3}
     - time: 0.6
-      value: {fileID: 1705128027, guid: 68b944a7ceb84479c90acf64797c5a84, type: 3}
+      value: {fileID: -5491415549158955605, guid: 48c266ae0734348198694bc6282c5264, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,10 +46,10 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -451859637, guid: 68b944a7ceb84479c90acf64797c5a84, type: 3}
-    - {fileID: 850425824, guid: 68b944a7ceb84479c90acf64797c5a84, type: 3}
-    - {fileID: -406238080, guid: 68b944a7ceb84479c90acf64797c5a84, type: 3}
-    - {fileID: 1705128027, guid: 68b944a7ceb84479c90acf64797c5a84, type: 3}
+    - {fileID: 8411552567520241075, guid: 48c266ae0734348198694bc6282c5264, type: 3}
+    - {fileID: 429938810137952971, guid: 48c266ae0734348198694bc6282c5264, type: 3}
+    - {fileID: 4213578002167244605, guid: 48c266ae0734348198694bc6282c5264, type: 3}
+    - {fileID: -5491415549158955605, guid: 48c266ae0734348198694bc6282c5264, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

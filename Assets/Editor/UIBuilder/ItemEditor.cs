@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using FarmGame;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -6,6 +8,9 @@ using UnityEditor.UIElements;
 
 public class ItemEditor : EditorWindow
 {
+    private ItemDataList_SO _dataBase;
+    private List<ItemDetails> _itemDetailsList = new List<ItemDetails>();
+
     [MenuItem("FarmGame/ItemEditor")]
     public static void ShowExample()
     {
@@ -26,12 +31,30 @@ public class ItemEditor : EditorWindow
         var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/UIBuilder/ItemEditor.uxml");
         VisualElement labelFromUXML = visualTree.Instantiate();
         root.Add(labelFromUXML);
-        //
-        // // A stylesheet can be added to a VisualElement.
-        // // The style will be applied to the VisualElement and all of its children.
-        // var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Editor/UIBuilder/ItemEditor.uss");
-        // VisualElement labelWithStyle = new Label("Hello World! With Style");
-        // labelWithStyle.styleSheets.Add(styleSheet);
-        // root.Add(labelWithStyle);
+        
+        //Load DataBase
+        LoadDataBase();
+    }
+
+    private void LoadDataBase()
+    {
+        //固定写法 t: 表示Type
+        var dataArray =   AssetDatabase.FindAssets("ItemDataList_SO");
+        if (dataArray.Length > 1)
+        {
+            var path = AssetDatabase.GUIDToAssetPath(dataArray[0]);
+            _dataBase = AssetDatabase.LoadAssetAtPath(path,typeof(ItemDataList_SO)) as ItemDataList_SO;
+        }
+
+        _itemDetailsList = _dataBase.ItemDetailsList;
+        //标记 不标记则无法保存数据
+        EditorUtility.SetDirty(_dataBase);
+
+        // #if UNITY_EDITOR
+        // foreach (var itemDetails in _itemDetailsList)
+        // {
+        //     Debug.Log(itemDetails.ItemID);
+        // }
+        // #endif
     }
 }

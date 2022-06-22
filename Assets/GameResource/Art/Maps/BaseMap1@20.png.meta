@@ -7224,9 +7224,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BaseMap1@20_228: -1273590320
+      BaseMap1@20_293: 746505101
       BaseMap1@20_243: -354517149
       BaseMap1@20_109: 2027865246
+      BaseMap1@20_228: -1273590320
       BaseMap1@20_276: 694116322
       BaseMap1@water08: -1348803144
       BaseMap1@20_111: 1539969422
@@ -7271,7 +7272,6 @@ TextureImporter:
       BaseMap1@20_3: -1320173158
       BaseMap1@20_106: -1504004976
       BaseMap1@20_132: 838684811
-      BaseMap1@20_307: -1860593417
       BaseMap1@20_315: -512239780
       BaseMap1@20_143: -248055784
       BaseMap1@20_57: -826662743
@@ -7552,16 +7552,16 @@ TextureImporter:
       BaseMap1@20_1: -1904258649
       BaseMap1@20_302: 1702546492
       BaseMap1@20_210: 1668155848
-      BaseMap1@20_293: 746505101
-      BaseMap1@20_205: -1626434087
       BaseMap1@20_226: 1787685156
-      BaseMap1@20_75: -408015391
-      BaseMap1@20_289: -1646425804
-      BaseMap1@20_99: 1012417248
-      BaseMap1@20_86: 884027891
-      BaseMap1@20_224: -535392113
-      BaseMap1@20_193: -580081679
+      BaseMap1@20_205: -1626434087
       BaseMap1@20_48: 1213114642
+      BaseMap1@20_193: -580081679
+      BaseMap1@20_289: -1646425804
+      BaseMap1@20_224: -535392113
+      BaseMap1@20_86: 884027891
+      BaseMap1@20_307: -1860593417
+      BaseMap1@20_99: 1012417248
+      BaseMap1@20_75: -408015391
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

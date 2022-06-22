@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Girl02_IdleRight
-  serializedVersion: 7
+  serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -1124802513, guid: 68b944a7ceb84479c90acf64797c5a84, type: 3}
+      value: {fileID: 5469757632783129874, guid: 48c266ae0734348198694bc6282c5264, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -40,7 +40,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -1124802513, guid: 68b944a7ceb84479c90acf64797c5a84, type: 3}
+    - {fileID: 5469757632783129874, guid: 48c266ae0734348198694bc6282c5264, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
