@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using FarmGame;
 using UnityEditor;
@@ -9,7 +10,10 @@ using UnityEditor.UIElements;
 public class ItemEditor : EditorWindow
 {
     private ItemDataList_SO _dataBase;
-    private List<ItemDetails> _itemDetailsList = new List<ItemDetails>();
+    private List<ItemDetails> _itemList = new List<ItemDetails>();
+    private VisualTreeAsset _itemRawTemplate;
+
+    private ListView _itemListView;
 
     [MenuItem("FarmGame/ItemEditor")]
     public static void ShowExample()
@@ -32,8 +36,15 @@ public class ItemEditor : EditorWindow
         VisualElement labelFromUXML = visualTree.Instantiate();
         root.Add(labelFromUXML);
         
+        //Get itemRawTemplate
+        _itemRawTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/UIBuilder/ItemRawTemplate.uxml");
+        
+        //Find ListView Container -> ItemList -> 1、label 2、ListView
+        _itemListView = root.Q<VisualElement>("ItemList").Q<ListView>("ListView");
         //Load DataBase
         LoadDataBase();
+        
+        GenerateListView();
     }
 
     private void LoadDataBase()
@@ -46,7 +57,7 @@ public class ItemEditor : EditorWindow
             _dataBase = AssetDatabase.LoadAssetAtPath(path,typeof(ItemDataList_SO)) as ItemDataList_SO;
         }
 
-        _itemDetailsList = _dataBase.ItemDetailsList;
+        _itemList = _dataBase.ItemDetailsList;
         //标记 不标记则无法保存数据
         EditorUtility.SetDirty(_dataBase);
 
@@ -57,4 +68,29 @@ public class ItemEditor : EditorWindow
         // }
         // #endif
     }
+
+    private void GenerateListView()
+    {
+        //get 模板
+        Func<VisualElement> makeItem = () => _itemRawTemplate.CloneTree();
+        
+        //E ELEMENT I iD
+        Action<VisualElement, int> bindItem = (element, id) =>
+        {
+            if (id < _itemList.Count)
+            {
+                if (_itemList[id].ItemIcon.texture != null)
+                {
+                    element.Q<VisualElement>("Icon").style.backgroundImage = _itemList[id].ItemIcon.texture;
+                }
+                element.Q<Label>("Name").text = _itemList[id].ItemName == null ? "NO ITEM" : _itemList[id].ItemName;
+            }
+        };
+
+        _itemListView.fixedItemHeight = 60;
+        _itemListView.itemsSource = _itemList;
+        _itemListView.makeItem = makeItem;
+        _itemListView.bindItem = bindItem;
+    }
+    
 }

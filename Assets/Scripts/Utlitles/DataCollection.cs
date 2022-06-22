@@ -8,7 +8,7 @@ namespace FarmGame
     {
         public int ItemID;
         
-        public string Name;
+        public string ItemName;
 
         public ItemType ItemType;
 

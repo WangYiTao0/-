@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemDetailsList:
   - ItemID: 1001
-    Name: "\u65A7\u5934"
+    ItemName: "\u65A7\u5B50"
     ItemType: 4
     ItemIcon: {fileID: 21300000, guid: 3714c3e6b5e3d498ebcd06d432b3dd89, type: 3}
     ItemOnWorldSprite: {fileID: 0}
