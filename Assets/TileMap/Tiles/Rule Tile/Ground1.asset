@@ -228,15 +228,13 @@ MonoBehaviour:
     - {x: 0, y: -1, z: 0}
     - {x: 1, y: 0, z: 0}
     m_RuleTransform: 0
-  - m_Id: 0
+  - m_Id: 12
     m_Sprites:
     - {fileID: 931385472, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
     - {fileID: 2110818186, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
     - {fileID: 335734, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
     - {fileID: -1787224530, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
     - {fileID: 806680427, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
-    - {fileID: -379005812, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
-    - {fileID: 901799980, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
