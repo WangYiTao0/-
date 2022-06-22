@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using FarmGame;
 using UnityEditor;
 using UnityEngine;
@@ -14,6 +15,13 @@ public class ItemEditor : EditorWindow
     private VisualTreeAsset _itemRawTemplate;
 
     private ListView _itemListView;
+    private ScrollView _itemDetailsSelection;
+    private ItemDetails _activeItem;
+
+    private VisualElement _iconPreview;
+    
+    //Default Icon
+    private Sprite _defaultIcon;
 
     [MenuItem("FarmGame/ItemEditor")]
     public static void ShowExample()
@@ -39,8 +47,15 @@ public class ItemEditor : EditorWindow
         //Get itemRawTemplate
         _itemRawTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/UIBuilder/ItemRawTemplate.uxml");
         
+        //
+        _defaultIcon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/GameResource/Art/Faces/Boy01-1.png");
+        
         //Find ListView Container -> ItemList -> 1、label 2、ListView
         _itemListView = root.Q<VisualElement>("ItemList").Q<ListView>("ListView");
+        //ind ScrollView  Container -> ScrollView
+        _itemDetailsSelection = root.Q<ScrollView>("ItemDetails");
+        
+        _iconPreview = _itemDetailsSelection.Q<VisualElement>("Icon");
         //Load DataBase
         LoadDataBase();
         
@@ -50,8 +65,8 @@ public class ItemEditor : EditorWindow
     private void LoadDataBase()
     {
         //固定写法 t: 表示Type
-        var dataArray =   AssetDatabase.FindAssets("ItemDataList_SO");
-        if (dataArray.Length > 1)
+        var dataArray =   AssetDatabase.FindAssets("t: ItemDataList_SO");
+        if (dataArray.Length >= 1)
         {
             var path = AssetDatabase.GUIDToAssetPath(dataArray[0]);
             _dataBase = AssetDatabase.LoadAssetAtPath(path,typeof(ItemDataList_SO)) as ItemDataList_SO;
@@ -79,11 +94,10 @@ public class ItemEditor : EditorWindow
         {
             if (id < _itemList.Count)
             {
-                if (_itemList[id].ItemIcon.texture != null)
-                {
-                    element.Q<VisualElement>("Icon").style.backgroundImage = _itemList[id].ItemIcon.texture;
-                }
+                element.Q<VisualElement>("Icon").style.backgroundImage　
+                        = _itemList[id].ItemIcon == null ? _defaultIcon.texture : _itemList[id].ItemIcon.texture;
                 element.Q<Label>("Name").text = _itemList[id].ItemName == null ? "NO ITEM" : _itemList[id].ItemName;
+        
             }
         };
 
@@ -91,6 +105,48 @@ public class ItemEditor : EditorWindow
         _itemListView.itemsSource = _itemList;
         _itemListView.makeItem = makeItem;
         _itemListView.bindItem = bindItem;
+
+        _itemListView.onSelectionChange += OnListSelectionChange;
+
+        //没选中前 不显示信息
+        _itemDetailsSelection.visible = false;
     }
-    
+
+    private void OnListSelectionChange(IEnumerable<object> selectItem)
+    {
+        _activeItem = (ItemDetails) selectItem.First();
+        GetItemDetails();
+        _itemDetailsSelection.visible = true;
+    }
+
+    private void GetItemDetails()
+    {
+        _itemDetailsSelection.MarkDirtyRepaint();
+        
+        _itemDetailsSelection.Q<IntegerField>("ItemID").value = _activeItem.ItemID;
+        //必须要写回调 这样才会在编辑器改变后 更新信息
+        _itemDetailsSelection.Q<IntegerField>("ItemID").RegisterValueChangedCallback(evt =>
+        {
+            _activeItem.ItemID = evt.newValue;
+        });
+        _itemDetailsSelection.Q<TextField>("ItemName").value = _activeItem.ItemName;
+        _itemDetailsSelection.Q<TextField>("ItemName").RegisterValueChangedCallback(evt =>
+        {
+            _activeItem.ItemName = evt.newValue;
+            _itemListView.Rebuild();
+        });
+
+        _iconPreview.style.backgroundImage = 
+            _activeItem.ItemIcon == null ? _defaultIcon.texture : _activeItem.ItemIcon.texture;
+        _itemDetailsSelection.Q<ObjectField>("ItemIcon").value = _activeItem.ItemIcon;
+        _itemDetailsSelection.Q<ObjectField>("ItemIcon").RegisterValueChangedCallback(evt =>
+        {
+            Sprite newIcon = evt.newValue as Sprite;
+            _activeItem.ItemIcon = newIcon;
+       
+            _iconPreview.style.backgroundImage = newIcon == null? _defaultIcon.texture : newIcon.texture;
+            _itemListView.Rebuild();
+        });
+
+    }
 }
