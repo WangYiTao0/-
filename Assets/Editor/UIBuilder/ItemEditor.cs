@@ -15,7 +15,7 @@ public class ItemEditor : EditorWindow
     private VisualTreeAsset _itemRawTemplate;
 
     private ListView _itemListView;
-    private ScrollView _itemDetailsSelection;
+    private ScrollView _itemDetailsSection;
     private ItemDetails _activeItem;
 
     private VisualElement _iconPreview;
@@ -55,9 +55,9 @@ public class ItemEditor : EditorWindow
         //Find ListView Container -> ItemList -> 1、label 2、ListView
         _itemListView = root.Q<VisualElement>("ItemList").Q<ListView>("ListView");
         //ind ScrollView  Container -> ScrollView
-        _itemDetailsSelection = root.Q<ScrollView>("ItemDetails");
+        _itemDetailsSection = root.Q<ScrollView>("ItemDetails");
         
-        _iconPreview = _itemDetailsSelection.Q<VisualElement>("Icon");
+        _iconPreview = _itemDetailsSection.Q<VisualElement>("Icon");
 
         root.Q<Button>("AddButton").clicked += OnAddItemButtonClicked;
         root.Q<Button>("DeleteButton").clicked += OnDeleteItemButtonClicked;
@@ -85,7 +85,7 @@ public class ItemEditor : EditorWindow
         _itemList.Remove(_activeItem);
         _activeItem = null;
         //没选中前 不显示信息
-        _itemDetailsSelection.visible = false;
+        _itemDetailsSection.visible = false;
         _itemListView.Rebuild();
     }
 
@@ -139,28 +139,28 @@ public class ItemEditor : EditorWindow
         _itemListView.onSelectionChange += OnListSelectionChange;
 
         //没选中前 不显示信息
-        _itemDetailsSelection.visible = false;
+        _itemDetailsSection.visible = false;
     }
 
     private void OnListSelectionChange(IEnumerable<object> selectItem)
     {
         _activeItem = (ItemDetails) selectItem.First();
         GetItemDetails();
-        _itemDetailsSelection.visible = true;
+        _itemDetailsSection.visible = true;
     }
 
     private void GetItemDetails()
     {
-        _itemDetailsSelection.MarkDirtyRepaint();
+        _itemDetailsSection.MarkDirtyRepaint();
         
-        _itemDetailsSelection.Q<IntegerField>("ItemID").value = _activeItem.ItemID;
+        _itemDetailsSection.Q<IntegerField>("ItemID").value = _activeItem.ItemID;
         //必须要写回调 这样才会在编辑器改变后 更新信息
-        _itemDetailsSelection.Q<IntegerField>("ItemID").RegisterValueChangedCallback(evt =>
+        _itemDetailsSection.Q<IntegerField>("ItemID").RegisterValueChangedCallback(evt =>
         {
             _activeItem.ItemID = evt.newValue;
         });
-        _itemDetailsSelection.Q<TextField>("ItemName").value = _activeItem.ItemName;
-        _itemDetailsSelection.Q<TextField>("ItemName").RegisterValueChangedCallback(evt =>
+        _itemDetailsSection.Q<TextField>("ItemName").value = _activeItem.ItemName;
+        _itemDetailsSection.Q<TextField>("ItemName").RegisterValueChangedCallback(evt =>
         {
             _activeItem.ItemName = evt.newValue;
             _itemListView.Rebuild();
@@ -168,8 +168,8 @@ public class ItemEditor : EditorWindow
 
         _iconPreview.style.backgroundImage = 
             _activeItem.ItemIcon == null ? _defaultIcon.texture : _activeItem.ItemIcon.texture;
-        _itemDetailsSelection.Q<ObjectField>("ItemIcon").value = _activeItem.ItemIcon;
-        _itemDetailsSelection.Q<ObjectField>("ItemIcon").RegisterValueChangedCallback(evt =>
+        _itemDetailsSection.Q<ObjectField>("ItemIcon").value = _activeItem.ItemIcon;
+        _itemDetailsSection.Q<ObjectField>("ItemIcon").RegisterValueChangedCallback(evt =>
         {
             Sprite newIcon = evt.newValue as Sprite;
             _activeItem.ItemIcon = newIcon;
@@ -177,6 +177,61 @@ public class ItemEditor : EditorWindow
             _iconPreview.style.backgroundImage = newIcon == null? _defaultIcon.texture : newIcon.texture;
             _itemListView.Rebuild();
         });
+        
+         //其他所有变量的绑定
+        _itemDetailsSection.Q<ObjectField>("ItemSprite").value = _activeItem.ItemOnWorldSprite;
+        _itemDetailsSection.Q<ObjectField>("ItemSprite").RegisterValueChangedCallback(evt =>
+        {
+            _activeItem.ItemOnWorldSprite = (Sprite)evt.newValue;
+        });
 
+        _itemDetailsSection.Q<EnumField>("ItemType").Init(_activeItem.ItemType);
+        _itemDetailsSection.Q<EnumField>("ItemType").value = _activeItem.ItemType;
+        _itemDetailsSection.Q<EnumField>("ItemType").RegisterValueChangedCallback(evt =>
+        {
+            _activeItem.ItemType = (ItemType)evt.newValue;
+        });
+
+        _itemDetailsSection.Q<TextField>("Description").value = _activeItem.ItemDescription;
+        _itemDetailsSection.Q<TextField>("Description").RegisterValueChangedCallback(evt =>
+        {
+            _activeItem.ItemDescription = evt.newValue;
+        });
+
+        _itemDetailsSection.Q<IntegerField>("ItemUseRadius").value = _activeItem.ItemUseRadius;
+        _itemDetailsSection.Q<IntegerField>("ItemUseRadius").RegisterValueChangedCallback(evt =>
+        {
+            _activeItem.ItemUseRadius = evt.newValue;
+        });
+
+        _itemDetailsSection.Q<Toggle>("CanPickedup").value = _activeItem.CanPickedup;
+        _itemDetailsSection.Q<Toggle>("CanPickedup").RegisterValueChangedCallback(evt =>
+        {
+            _activeItem.CanPickedup = evt.newValue;
+        });
+
+        _itemDetailsSection.Q<Toggle>("CanDropped").value = _activeItem.CanDropped;
+        _itemDetailsSection.Q<Toggle>("CanDropped").RegisterValueChangedCallback(evt =>
+        {
+            _activeItem.CanDropped = evt.newValue;
+        });
+
+        _itemDetailsSection.Q<Toggle>("CanCarried").value = _activeItem.CanCarried;
+        _itemDetailsSection.Q<Toggle>("CanCarried").RegisterValueChangedCallback(evt =>
+        {
+            _activeItem.CanCarried = evt.newValue;
+        });
+
+        _itemDetailsSection.Q<IntegerField>("Price").value = _activeItem.ItemPrice;
+        _itemDetailsSection.Q<IntegerField>("Price").RegisterValueChangedCallback(evt =>
+        {
+            _activeItem.ItemPrice = evt.newValue;
+        });
+
+        _itemDetailsSection.Q<Slider>("SellPercentage").value = _activeItem.SellPercentage;
+        _itemDetailsSection.Q<Slider>("SellPercentage").RegisterValueChangedCallback(evt =>
+        {
+            _activeItem.SellPercentage = evt.newValue;
+        });
     }
 }
