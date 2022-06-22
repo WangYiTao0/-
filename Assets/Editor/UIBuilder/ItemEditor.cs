@@ -20,6 +20,8 @@ public class ItemEditor : EditorWindow
 
     private VisualElement _iconPreview;
     
+    
+    
     //Default Icon
     private Sprite _defaultIcon;
 
@@ -56,12 +58,40 @@ public class ItemEditor : EditorWindow
         _itemDetailsSelection = root.Q<ScrollView>("ItemDetails");
         
         _iconPreview = _itemDetailsSelection.Q<VisualElement>("Icon");
+
+        root.Q<Button>("AddButton").clicked += OnAddItemButtonClicked;
+        root.Q<Button>("DeleteButton").clicked += OnDeleteItemButtonClicked;
+
+        
         //Load DataBase
         LoadDataBase();
         
         GenerateListView();
     }
 
+    #region 按键事件
+    private void OnAddItemButtonClicked()
+    {
+        ItemDetails newitem = new ItemDetails();
+
+        newitem.ItemName = "New Item";
+        newitem.ItemID = 1000 + _itemList.Count;
+        _itemList.Add(newitem);
+        _itemListView.Rebuild();
+    }
+
+    private void OnDeleteItemButtonClicked()
+    {
+        _itemList.Remove(_activeItem);
+        _activeItem = null;
+        //没选中前 不显示信息
+        _itemDetailsSelection.visible = false;
+        _itemListView.Rebuild();
+    }
+
+
+    #endregion
+    
     private void LoadDataBase()
     {
         //固定写法 t: 表示Type
