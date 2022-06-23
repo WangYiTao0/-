@@ -12,5 +12,12 @@ namespace FarmGame
         {
             UpdateInventoryUI?.Invoke(location,itemList);
         }
+
+        public static event Action<int, Vector3> InstantiateItemInScene;
+
+        public static void CallInstantiateItemInScene(int id, Vector3 pos)
+        {
+            InstantiateItemInScene?.Invoke(id,pos);
+        }
     }
 }

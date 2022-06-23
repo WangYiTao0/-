@@ -4,8 +4,8 @@ using FarmGame.Inventory;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
+using EventHandler = FarmGame.EventHandler;
 
 namespace Inventory.UI
 {
@@ -120,9 +120,20 @@ namespace Inventory.UI
                     }
                     //商店购买
                     //仓库交换
-                    
+                    InventoryUI.UpdateSlotHighLight(-1);
                 }
             }
+            // else //测试 扔在地上
+            // {
+            //     if (this.ItemDetails.CanDropped)
+            //     {
+            //
+            //         var pos = Camera.main.ScreenToWorldPoint(new Vector3(
+            //             Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+            //
+            //         EventHandler.CallInstantiateItemInScene(this.ItemDetails.ItemID, pos);
+            //     }
+            // }
         }
     }
 }
