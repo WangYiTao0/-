@@ -62,12 +62,13 @@ public class ItemEditor : EditorWindow
         root.Q<Button>("AddButton").clicked += OnAddItemButtonClicked;
         root.Q<Button>("DeleteButton").clicked += OnDeleteItemButtonClicked;
 
-        
         //Load DataBase
         LoadDataBase();
         
         GenerateListView();
     }
+
+
 
     #region 按键事件
     private void OnAddItemButtonClicked()
