@@ -1,4 +1,5 @@
 
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -18,7 +19,14 @@ namespace  FarmGame.Inventory
         /// 箱子
         /// </summary>
         public InventoryBag_SO BoxBag;
-        
+
+
+        private void Start()
+        {
+            //更新UI
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player,PlayerBag.ItemList);
+        }
+
         /// <summary>
         /// 返回 Item信息
         /// </summary>
@@ -50,6 +58,9 @@ namespace  FarmGame.Inventory
             {
                 Destroy(item.gameObject);
             }
+            
+            //更新UI
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player,PlayerBag.ItemList);
         }
         /// <summary>
         /// 背包是否有空位
