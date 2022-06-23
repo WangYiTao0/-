@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using Inventory.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace FarmGame.Inventory
 {
     public class InventoryUI : MonoBehaviour
     {
+        [Header("拖拽图片")] public Image dragItemImage;
+        
         [Header("玩家背包UI")]
         [SerializeField] private GameObject _bagUI;
 
@@ -81,18 +85,18 @@ namespace FarmGame.Inventory
         /// 更新高亮显示
         /// </summary>
         /// <param name="index"></param>
-        public void UpdateSlotHeight(int index)
+        public void UpdateSlotHighLight(int index)
         {
             foreach (var slotUI in _playSlotArray)
             {
                 if (slotUI.IsSelected && slotUI.SlotIndex == index)
                 {
-                    slotUI._slotHightLight.gameObject.SetActive(true);
+                    slotUI._slotHighLight.gameObject.SetActive(true);
                 }
                 else
                 {
                     slotUI.IsSelected = false;
-                    slotUI._slotHightLight.gameObject.SetActive(false);
+                    slotUI._slotHighLight.gameObject.SetActive(false);
                 }
             }
         }

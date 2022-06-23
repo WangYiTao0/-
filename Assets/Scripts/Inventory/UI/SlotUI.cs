@@ -4,18 +4,19 @@ using FarmGame.Inventory;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Inventory.UI
 {
-    public class SlotUI : MonoBehaviour,IPointerClickHandler
+    public class SlotUI : MonoBehaviour,IPointerClickHandler,IBeginDragHandler,IDragHandler,IEndDragHandler
     {
         [Header("组件获取")]
         [SerializeField] private Image _slotImage;
 
         [SerializeField] private TextMeshProUGUI _amountText;
 
-        [SerializeField] public Image _slotHightLight;
+        [SerializeField] public Image _slotHighLight;
 
         [SerializeField] private Button _slotButton;
 
@@ -44,13 +45,7 @@ namespace Inventory.UI
             }
         }
         
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            if (ItemAmount == 0)
-                return;
-            IsSelected = !IsSelected;
-            InventoryUI.UpdateSlotHeight(SlotIndex);
-        }
+  
 
         /// <summary>
         /// 更新格子UI信息
@@ -83,7 +78,51 @@ namespace Inventory.UI
             _slotButton.interactable = false;
         }
 
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (ItemAmount == 0)
+                return;
+            IsSelected = !IsSelected;
+            InventoryUI.UpdateSlotHighLight(SlotIndex);
+        }
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            if (ItemAmount == 0)
+                return;
 
+            InventoryUI.dragItemImage.enabled = true;
+            InventoryUI.dragItemImage.sprite = _slotImage.sprite;
+            InventoryUI.dragItemImage.SetNativeSize();
+            IsSelected = true;
+        }
 
+        public void OnDrag(PointerEventData eventData)
+        {
+            InventoryUI.dragItemImage.transform.position = Input.mousePosition;
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            InventoryUI.dragItemImage.enabled = false;
+            //判断是不是空
+
+            if (eventData.pointerCurrentRaycast.gameObject != null)
+            {
+                SlotUI targetSlot = eventData.pointerCurrentRaycast.gameObject.GetComponent<SlotUI>();
+                if (targetSlot != null)
+                {
+                    int targetIndex = targetSlot.SlotIndex;
+
+                    //背包交换
+                    if (SlotType == SlotType.Bag && targetSlot.SlotType == SlotType.Bag)
+                    {
+                        InventoryManager.Instance.SwapItem(SlotIndex,targetIndex);
+                    }
+                    //商店购买
+                    //仓库交换
+                    
+                }
+            }
+        }
     }
 }
