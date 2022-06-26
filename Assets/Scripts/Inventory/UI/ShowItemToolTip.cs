@@ -24,7 +24,7 @@ namespace FarmGame.Inventory
                 return;
             }
             _inventory._ItemToolTip.gameObject.SetActive(true);
-            _inventory._ItemToolTip.SetupToolTip(_slotUI.ItemDetails,_slotUI.SlotType);
+            _inventory._ItemToolTip.SetupToolTip(_slotUI._ItemDetails,_slotUI._SlotType);
             _inventory._ItemToolTip.GetComponent<RectTransform>().pivot = new Vector2(0.5f,0);
             _inventory._ItemToolTip.transform.position = transform.position + Vector3.up * 60;
         }

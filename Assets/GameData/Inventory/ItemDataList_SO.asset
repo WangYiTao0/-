@@ -107,8 +107,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 0
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 30
+    SellPercentage: 0.5
   - ItemID: 1001
     ItemName: "\u30B8\u30E3\u30AC\u30A4\u30E2\u7A2E\u5B50"
     ItemType: 0
@@ -131,8 +131,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 0
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 30
+    SellPercentage: 0.5
   - ItemID: 1002
     ItemName: "\u8461\u8404\u7A2E\u5B50"
     ItemType: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 1
-    ItemPrice: 30
+    ItemPrice: 20
     SellPercentage: 0.5
   - ItemID: 1014
     ItemName: "\u8461\u8404"
@@ -155,8 +155,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 0
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 60
+    SellPercentage: 0.5
   - ItemID: 1003
     ItemName: "\u30D6\u30EB\u30FC\u30D9\u30EA\u30FC\u7A2E\u5B50"
     ItemType: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 1
-    ItemPrice: 50
+    ItemPrice: 20
     SellPercentage: 0.5
   - ItemID: 1015
     ItemName: "\u30D6\u30EB\u30FC\u30D9\u30EA\u30FC"
@@ -179,8 +179,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 0
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 60
+    SellPercentage: 0.5
   - ItemID: 1004
     ItemName: "\u8304\u5B50\u7A2E\u5B50"
     ItemType: 0
@@ -203,8 +203,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 0
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 30
+    SellPercentage: 0.5
   - ItemID: 1005
     ItemName: "\u5927\u6839\u7A2E\u5B50"
     ItemType: 0
@@ -215,8 +215,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 1
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 10
+    SellPercentage: 0.5
   - ItemID: 1017
     ItemName: "\u5927\u6839"
     ItemType: 1
@@ -227,8 +227,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 0
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 30
+    SellPercentage: 0.5
   - ItemID: 1006
     ItemName: "\u30D4\u30F3\u30AF\u30E9\u30C7\u30A3\u30C3\u30B7\u30E5\u7A2E\u5B50"
     ItemType: 0
@@ -239,8 +239,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 1
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 10
+    SellPercentage: 0.5
   - ItemID: 1018
     ItemName: "\u30D4\u30F3\u30AF\u30E9\u30C7\u30A3\u30C3\u30B7\u30E5"
     ItemType: 1
@@ -251,8 +251,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 0
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 30
+    SellPercentage: 0.5
   - ItemID: 1007
     ItemName: "\u30EC\u30C3\u30C9\u30DA\u30C3\u30D1\u30FC\u7A2E\u5B50"
     ItemType: 0
@@ -263,8 +263,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 1
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 10
+    SellPercentage: 0.5
   - ItemID: 1019
     ItemName: "\u30EC\u30C3\u30C9\u30DA\u30C3\u30D1\u30FC"
     ItemType: 1
@@ -275,8 +275,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 0
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 50
+    SellPercentage: 0.5
   - ItemID: 1008
     ItemName: "\u30C8\u30DE\u30C8\u7A2E\u5B50"
     ItemType: 0
@@ -287,8 +287,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 1
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 10
+    SellPercentage: 0.5
   - ItemID: 1020
     ItemName: "\u30C8\u30DE\u30C8"
     ItemType: 1
@@ -299,8 +299,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 0
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 30
+    SellPercentage: 0.5
   - ItemID: 1009
     ItemName: "\u30B9\u30A4\u30AB\u7A2E\u5B50"
     ItemType: 0
@@ -311,8 +311,8 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 1
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 30
+    SellPercentage: 0.5
   - ItemID: 1021
     ItemName: "\u30B9\u30A4\u30AB"
     ItemType: 1
@@ -323,7 +323,7 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 0
     CanCarried: 0
-    ItemPrice: 20
+    ItemPrice: 120
     SellPercentage: 0.5
   - ItemID: 1011
     ItemName: "\u30CB\u30FC\u30C9\u30EB\u30A6\u30C3\u30C9"
@@ -335,5 +335,5 @@ MonoBehaviour:
     CanPickedup: 1
     CanDropped: 1
     CanCarried: 1
-    ItemPrice: 0
-    SellPercentage: 0
+    ItemPrice: 1
+    SellPercentage: 0.5

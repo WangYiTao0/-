@@ -41,4 +41,13 @@ namespace FarmGame
         public int ItemID;
         public int ItemAmount;
     }
+
+    [Serializable]
+    public class AnimatorType
+    {
+        public PartType _PartType;
+        public PartName _PartName;
+
+        public AnimatorOverrideController _OverrideController;
+    }
 }

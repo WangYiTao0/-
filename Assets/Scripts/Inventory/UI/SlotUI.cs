@@ -4,6 +4,7 @@ using FarmGame.Inventory;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using EventHandler = FarmGame.EventHandler;
 
@@ -23,11 +24,11 @@ namespace Inventory.UI
         /// <summary>
         /// 格子类型
         /// </summary>
-        public SlotType SlotType;
+        [FormerlySerializedAs("SlotType")] public SlotType _SlotType;
 
         public bool IsSelected;
 
-        public ItemDetails ItemDetails;
+        [FormerlySerializedAs("ItemDetails")] public ItemDetails _ItemDetails;
 
         public int ItemAmount;
 
@@ -39,7 +40,7 @@ namespace Inventory.UI
         {
             IsSelected = false;
 
-            if (this.ItemDetails.ItemID == 0)
+            if (this._ItemDetails.ItemID == 0)
             {
                 UpdateEmptySlot();
             }
@@ -54,7 +55,7 @@ namespace Inventory.UI
         /// <param name="amount"></param>
         public void UpdateSlot(ItemDetails itemDetails, int amount)
         {
-            ItemDetails = itemDetails;
+            _ItemDetails = itemDetails;
             _slotImage.sprite = itemDetails.ItemIcon;
             ItemAmount = amount;
             _amountText.SetText(ItemAmount.ToString());
@@ -84,6 +85,12 @@ namespace Inventory.UI
                 return;
             IsSelected = !IsSelected;
             InventoryUI.UpdateSlotHighLight(SlotIndex);
+
+            if (_SlotType == SlotType.Bag)
+            {
+                EventHandler.CallItemSelectedEvent(_ItemDetails,IsSelected);
+            }
+            
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
@@ -114,7 +121,7 @@ namespace Inventory.UI
                     int targetIndex = targetSlot.SlotIndex;
 
                     //背包交换
-                    if (SlotType == SlotType.Bag && targetSlot.SlotType == SlotType.Bag)
+                    if (_SlotType == SlotType.Bag && targetSlot._SlotType == SlotType.Bag)
                     {
                         InventoryManager.Instance.SwapItem(SlotIndex,targetIndex);
                     }
