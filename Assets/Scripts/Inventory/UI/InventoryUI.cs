@@ -9,6 +9,8 @@ namespace FarmGame.Inventory
 {
     public class InventoryUI : MonoBehaviour
     {
+        public ItemToolTip _ItemToolTip;
+        
         [Header("拖拽图片")] public Image dragItemImage;
         
         [Header("玩家背包UI")]
