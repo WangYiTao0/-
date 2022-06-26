@@ -78,4 +78,12 @@
     {
         Body,Hair,Arm,Tool
     }
+
+    public enum Season
+    {
+        Spring,
+        Summer,
+        Autumn,
+        Winter,
+    }
 }
